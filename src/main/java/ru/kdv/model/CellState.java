@@ -1,4 +1,4 @@
-package ru.kdv.view;
+package ru.kdv.model;
 
 import lombok.Getter;
 

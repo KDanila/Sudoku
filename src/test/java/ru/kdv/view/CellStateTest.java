@@ -1,10 +1,7 @@
 package ru.kdv.view;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import ru.kdv.model.CellState;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

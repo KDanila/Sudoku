@@ -1,6 +1,7 @@
 package ru.kdv.view;
 
 import org.junit.jupiter.api.Test;
+import ru.kdv.model.Board;
 
 
 class BoardTest {
