@@ -19,5 +19,15 @@ class CellStateTest {
         assertEquals(CellState.EIGHT.getState(), 8);
         assertEquals(CellState.NINE.getState(), 9);
     }
+    @Test
+    public void getRandomState() {
+        System.out.println(CellState.getRandom());
+        System.out.println(CellState.getRandom());
+        System.out.println(CellState.getRandom());
+        System.out.println(CellState.getRandom());
+        System.out.println(CellState.getRandom());
+        System.out.println(CellState.getRandom());
+        System.out.println(CellState.getRandom());
+    }
 
 }

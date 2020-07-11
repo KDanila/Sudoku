@@ -20,10 +20,10 @@ public class BoardUtil {
     }
 
     static public Point[][] generateRandomStateInBoard(Point[][] board) {
-        removePoosibleStateInHLine();
+       /* removePoosibleStateInHLine();
         removePoosibleStateInVLine();
         removePoosibleStateInSquare();
-        return board;
+       */ return board;
     }
 
 }
