@@ -22,26 +22,26 @@ public class BoardUtil {
     }
 
     static public Point[][] generateRandomStateInBoard(Point[][] board) {
-        Map<Point, List<CellState>> possibleState = new HashMap<>();
+        Map<Point, List<CellState>> possibleState = new TreeMap<>();
         initPossibleState(possibleState);
 
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                Point temp = new Point(i, j);
-                List<CellState> tempState = possibleState.get(temp);
-                CellState cellValue = setRandValueInPoints(tempState);
-                removePoosibleStateInHLine(temp, possibleState, cellValue);
-                removePosibleStateInVLine(temp, possibleState, cellValue);
+                Point point = new Point(i, j);
+                List<CellState> tempState = possibleState.get(point);
+                if (tempState.size() == 1) {
+                    point.setState(tempState.get(0));
+                    continue;
+                }
+                CellState cellValue = setRandValueInPoints(possibleState, point);
+                removePossibleStateInHLine(point, possibleState, cellValue);
+                removePossibleStateInVLine(point, possibleState, cellValue);
             }
         }
-       /* removePoosibleStateInHLine();
-        removePoosibleStateInVLine();
-        removePoosibleStateInSquare();
-       */
         return board;
     }
 
-    private static void removePosibleStateInVLine(Point temp, Map<Point, List<CellState>> possibleState, CellState cellValue) {
+    private static void removePossibleStateInVLine(Point temp, Map<Point, List<CellState>> possibleState, CellState cellValue) {
         int vIndex = temp.getY();
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (i == temp.getX()) {
@@ -51,7 +51,7 @@ public class BoardUtil {
         }
     }
 
-    private static void removePoosibleStateInHLine(Point temp, Map<Point, List<CellState>> possibleState, CellState cellValue) {
+    private static void removePossibleStateInHLine(Point temp, Map<Point, List<CellState>> possibleState, CellState cellValue) {
         int hIndex = temp.getX();
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (i == temp.getY()) {
@@ -61,7 +61,8 @@ public class BoardUtil {
         }
     }
 
-    private static CellState setRandValueInPoints(List<CellState> tempState) {
+    private static CellState setRandValueInPoints(Map<Point, List<CellState>> possibleState, Point point) {
+        List<CellState> tempState = possibleState.get(point);
         int index = new Random().nextInt(tempState.size());
         CellState toReturn = tempState.get(index);
         tempState.removeIf(cell -> cell != toReturn);
